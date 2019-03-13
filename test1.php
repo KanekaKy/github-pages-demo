@@ -11,10 +11,10 @@ return (string)
                 mcrypt_encrypt
                     (
                     $cipher,
-                    substr(($key),0,mcrypt_get_key_size($cipher, $mode)),
+                    substr(md5($key),0,mcrypt_get_key_size($cipher, $mode)),
                     $data,
                     $mode,
-                    substr(($key),0,mcrypt_get_block_size($cipher, $mode))
+                    substr(md5($key),0,mcrypt_get_block_size($cipher, $mode))
                     )
                 );
 }
@@ -24,10 +24,10 @@ function decrypt($data, $key, $cipher, $mode) {
             mcrypt_decrypt
                 (
                 $cipher,
-                substr(($key),0,mcrypt_get_key_size($cipher, $mode)),
+                substr(md5($key),0,mcrypt_get_key_size($cipher, $mode)),
                 base64_decode($data),
                 $mode,
-                substr(($key),0,mcrypt_get_block_size($cipher, $mode))
+                substr(md5($key),0,mcrypt_get_block_size($cipher, $mode))
                 );
 }
 ?>
